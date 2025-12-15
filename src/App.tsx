@@ -15,7 +15,7 @@ import imsiImg from './assets/imsi.jpg';
 import anafiUkrImg from './assets/ukr.jpg';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('home');
+  const [, setActiveTab] = useState('home');
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
