@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-slate-950 text-slate-200 antialiased;
+  cursor: url('/src/assets/drone-cursor.svg') 16 16, auto;
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  width: max-content;
+  animation: infinite-scroll 60s linear infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    left: -10%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+.animate-scan-line {
+  animation: scan-line 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
