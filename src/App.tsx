@@ -15,9 +15,23 @@ import ebeeVisionImg from './assets/ebeevision.jpg';
 import imsiImg from './assets/imsi.jpg';
 import anafiUkrImg from './assets/ukr.jpg';
 import EbeeTac from './pages/EbeeTac';
+import AnafiUkr from './pages/AnafiUkr';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('ebee-tac');
+  const [currentPage, setCurrentPage] = useState(() => {
+    const path = window.location.pathname;
+    if (path === '/anafi-ukr') return 'anafi-ukr';
+    if (path === '/ebee-tac') return 'ebee-tac';
+    if (path === '/') return 'home';
+    return 'ebee-tac'; // Default fallback
+  });
+
+  // Update URL history when page changes
+  useEffect(() => {
+    const path = currentPage === 'home' ? '/' : `/${currentPage}`;
+    window.history.pushState(null, '', path);
+    window.scrollTo(0, 0);
+  }, [currentPage]);
   const [, setActiveTab] = useState('home');
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -129,6 +143,36 @@ function App() {
           </div>
         </nav>
         <EbeeTac />
+      </div>
+    );
+  }
+
+  // Anafi UKR Route
+  if (currentPage === 'anafi-ukr') {
+    return (
+      <div>
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/80 backdrop-blur-md border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-24">
+              <div className="relative w-48 h-full flex items-center cursor-pointer" onClick={() => setCurrentPage('home')}>
+                <img src={logo} alt="AEMME DEFENSE" className="absolute top-1/2 left-0 -translate-y-1/2 h-24 w-auto object-contain filter drop-shadow-lg max-w-none" />
+              </div>
+              <div className="hidden md:block">
+                <div className="ml-10 flex items-baseline space-x-8">
+                  {['Soluzioni', 'Partner', 'Servizi', 'About'].map((item) => (
+                    <a key={item} href="#" className="hover:text-blue-400 transition-colors uppercase text-xs tracking-widest font-semibold text-slate-400">
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <button className="bg-[#152d50] hover:bg-[#1e3a63] text-white px-6 py-2 rounded text-xs uppercase tracking-widest font-bold transition-colors">
+                Contatti
+              </button>
+            </div>
+          </div>
+        </nav>
+        <AnafiUkr />
       </div>
     );
   }
@@ -306,6 +350,9 @@ function App() {
                       if (product.id === 1) {
                         window.scrollTo(0, 0);
                         setCurrentPage('ebee-tac');
+                      } else if (product.id === 3) {
+                        window.scrollTo(0, 0);
+                        setCurrentPage('anafi-ukr');
                       } else {
                         alert("Scheda tecnica completa in arrivo.");
                       }

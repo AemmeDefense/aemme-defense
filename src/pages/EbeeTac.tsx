@@ -13,6 +13,8 @@ import certImg from '../assets/APPROVED.png';
 import emotionImg from '../assets/emotion.png';
 import reliabilityImg from '../assets/ebeetac4.jpg';
 import safeOpsImg from '../assets/ebeetac10.jpg';
+import ndaaImg from '../assets/ndaa.png';
+import mappaItaliaImg from '../assets/mappaitalia.png';
 
 function EbeeTac() {
     const [activeFeature, setActiveFeature] = useState(0);
@@ -42,36 +44,36 @@ function EbeeTac() {
     const features = [
         {
             id: 0,
-            title: "3D Models",
-            subtitle: "Digital Twin",
+            title: "Modelli 3D",
+            subtitle: "",
             description: "Trasforma i dati grezzi in modelli 3D georeferenziati. Grazie alla risoluzione centimetrica dei sensori integrati ogni dettaglio viene ricostruito fedelmente.",
             video: modelVideo,
         },
         {
             id: 1,
-            title: "Orthomosaic map",
-            subtitle: "2D Mapping",
+            title: "Ortomosaico",
+            subtitle: "",
             description: "Trasforma centinaia di scatti aerei in un’unica mappa georeferenziata dalla precisione millimetrica. Ogni pixel riflette la sua reale posizione geografica, eliminando le distorsioni della lente e i dislivelli del terreno.",
             video: orthoVideo,
         },
         {
             id: 2,
-            title: "3D Point Cloud",
-            subtitle: "Spatial Data",
+            title: "Nuvola di Punti 3D",
+            subtitle: "",
             description: "Ogni nuvola è composta da milioni di punti georeferenziati che definiscono una mappatura del territorio rapida, scalabile e pronta per essere integrata in sistemi GIS o software CAD.",
             video: pointCloudVideo,
         },
         {
             id: 3,
-            title: "Thermal Map",
-            subtitle: "Heat Signature",
+            title: "Mappa Termica",
+            subtitle: "",
             description: "La Mappatura Termica ad alta risoluzione realizzata permette di visualizzare l'impronta calorifica del territorio e delle infrastrutture con estrema precisione. È una risorsa cruciale per la ricerca e soccorso.",
             video: thermalVideo,
         },
         {
             id: 4,
             title: "Digital Surface Model",
-            subtitle: "Elevation Data",
+            subtitle: "",
             description: "La ricostruzione altimetrica totale, questo output permette di mappare con precisione chiome degli alberi, tetti di edifici e infrastrutture complesse, garantendo una base dati ad alta fedeltà.",
             video: surfaceVideo,
         }
@@ -788,16 +790,110 @@ function EbeeTac() {
                 </div>
             </div>
 
-            {/* CTA FOOTER */}
-            <div className="bg-blue-900 py-24 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-10 mix-blend-overlay"></div>
-                <div className="relative z-10 max-w-4xl mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to Deploy?</h2>
-                    <button className="px-12 py-5 bg-[#050505] hover:bg-white hover:text-[#050505] text-white font-bold uppercase tracking-widest border border-white/20 transition-all duration-300">
-                        Contatta un Esperto
-                    </button>
+            {/* NDAA COMPLIANCE SECTION */}
+            <div className="py-24 bg-black relative overflow-hidden border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                    {/* Left: Content */}
+                    <div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Conforme all’NDAA</h2>
+                        <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                            eBee TAC è conforme al National Defense Authorization Act (NDAA) della legislazione federale degli Stati Uniti, un requisito essenziale per prevenire intrusioni e attacchi informatici malevoli.
+                        </p>
+                        <p className="text-slate-300 text-lg leading-relaxed">
+                            I componenti del drone, l’hardware e il software non provengono da aziende o Paesi inseriti in blacklist, e la soluzione di connettività è stata verificata e dimostrata come cyber-sicura.
+                        </p>
+                    </div>
+
+                    {/* Right: Image (Raw, no boxes) */}
+                    <div className="flex justify-center lg:justify-end">
+                        <img
+                            src={ndaaImg}
+                            alt="NDAA Compliant"
+                            className="relative w-full max-w-lg object-contain"
+                        />
+                    </div>
+
                 </div>
             </div>
+
+            {/* CTA Section - Advanced Command Design (MATCHING HOME) */}
+            <div className="relative bg-[#050505] overflow-hidden py-32 border-t border-white/10">
+
+                {/* Abstract Tech Background */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(21,45,80,0.4),transparent_70%)]"></div>
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-blue-500/20 rounded-2xl overflow-hidden p-8 md:p-12 lg:p-20 shadow-[0_0_50px_rgba(21,45,80,0.5)]">
+
+                        {/* Tactical Corner Markers */}
+                        <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-blue-500/50 rounded-tl-2xl"></div>
+                        <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-blue-500/50 rounded-tr-2xl"></div>
+                        <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-blue-500/50 rounded-bl-2xl"></div>
+                        <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-blue-500/50 rounded-br-2xl"></div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                            <div className="text-left">
+                                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight tracking-tight">
+                                    Pronti a operare <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#5c8cc7]">
+                                        ovunque sia necessario.
+                                    </span>
+                                </h2>
+                                <p className="text-slate-300 text-lg md:text-xl mb-10 leading-relaxed max-w-lg border-l-4 border-blue-900/50 pl-6">
+                                    Forniamo consulenza tecnica avanzata e sviluppiamo soluzioni su misura, progettate per rispondere con precisione a ogni scenario operativo. Richiedi una consulenza specializzata, disponibile su tutto il territorio nazionale.
+                                </p>
+                                <button className="group relative px-10 py-5 bg-[#152d50] hover:bg-[#1e3a63] text-white font-bold rounded-sm uppercase tracking-widest transition-all overflow-hidden">
+                                    <span className="relative z-10 flex items-center gap-3">
+                                        Richiedi Consulenza
+                                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                                </button>
+                            </div>
+
+                            <div className="relative flex justify-center lg:justify-end">
+                                {/* Image blending container */}
+                                <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-[60px] animate-pulse"></div>
+                                    {/* White glow beneath image */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/15 blur-[80px] rounded-full"></div>
+                                    <img
+                                        src={mappaItaliaImg}
+                                        alt="Deployment Ready"
+                                        className="relative w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] transform group-hover:scale-105 transition-transform duration-700"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Footer */}
+            <footer className="bg-black py-12 border-t border-white/10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+                        <p className="text-xs text-blue-200/80">© 2025 AEMME SURVEYING - DEFENSE DIVISION. All rights reserved.</p>
+                        <div className="flex gap-6 mt-4 md:mt-0">
+                            <a href="#" className="text-xs text-slate-500 hover:text-white transition-colors">Privacy Policy</a>
+                            <a href="#" className="text-xs text-slate-500 hover:text-white transition-colors">Terms of Use</a>
+                        </div>
+                    </div>
+
+                    {/* Corporate Legal Info */}
+                    <div className="border-t border-white/5 pt-8 text-center">
+                        <div className="space-y-1 text-xs text-slate-600">
+                            <p className="font-bold text-slate-500">AEMME RE SRL</p>
+                            <p>Sede Legale: Via Lessolo 5 - 10153 TORINO</p>
+                            <p>P.IVA 09248140015</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div >
     );
 }
