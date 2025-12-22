@@ -548,7 +548,6 @@ function PerformanceSection() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "circOut" }}
-                        transition={{ duration: 0.8, ease: "circOut" }}
                         className="relative h-auto max-h-[450px] w-full flex items-center justify-center" // Removed min-h, added max-h constraint
                     >
                         <div className="absolute inset-0 bg-blue-500/10 blur-[80px] rounded-full"></div>
