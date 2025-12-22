@@ -4,6 +4,7 @@ import headerImg from '../assets/anafiukrheader.svg';
 import overviewImg from '../assets/ukr1.jpg';
 import performanceImg from '../assets/prestazioni.jpg';
 import nightVisionImg from '../assets/ukrnightvision.png';
+import tetherImg from '../assets/tether2.png';
 import blueUasImg from '../assets/blueuas.png';
 import gnssVideo from '../assets/gnssdenied.mp4';
 import radioVideo from '../assets/radio.mp4';
@@ -105,6 +106,12 @@ function AnafiUkr() {
 
             {/* NIGHT VISION SECTION - SCROLL REVEAL */}
             <NightVisionSection />
+
+            {/* TETHER SECTION - SCROLL CABLE TIMELINE */}
+            <TetherSection />
+
+            {/* SPECS SECTION - CLEAN LIST */}
+            <SystemSpecs />
 
             {/* SECURITY & STEALTH - DARK MODE */}
             <div className="py-32 bg-black relative overflow-hidden">
@@ -701,6 +708,164 @@ function NightVisionSection() {
                     </motion.div>
                 </div>
 
+            </div>
+        </div>
+    );
+}
+
+
+function TetherSection() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    const opacity1 = useTransform(scrollYProgress, [0.1, 0.25, 0.3, 0.35], [0, 1, 1, 0]);
+    const opacity2 = useTransform(scrollYProgress, [0.35, 0.45, 0.5, 0.55], [0, 1, 1, 0]);
+    const opacity3 = useTransform(scrollYProgress, [0.55, 0.65, 0.7, 0.75], [0, 1, 1, 0]);
+    const opacity4 = useTransform(scrollYProgress, [0.75, 0.85, 0.9, 0.95], [0, 1, 1, 0]);
+
+    return (
+        <div ref={containerRef} className="relative h-[400vh] bg-[#050505]">
+            <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
+
+                {/* Title (Always visible initially) */}
+                <motion.div
+                    style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [0, 1]) }}
+                    className="absolute top-10 md:top-20 z-30 text-center px-6"
+                >
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                        Occhio Persistente <span className="text-blue-500">Illimitato</span>
+                    </h2>
+                    <p className="text-slate-400 max-w-2xl mx-auto font-light">
+                        L’unico tether ultra-portatile ed energeticamente autosufficiente.
+                    </p>
+                </motion.div>
+
+                {/* The "Cable" Line - Persists vertically 
+                    We animate its height or just keep it as a guide.
+                    Let's make it a glowing line that connects to the drone.
+                */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-0.5 h-[50vh] bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 z-0"></div>
+
+                {/* Image Center */}
+                <motion.div
+                    className="relative z-10 w-full max-w-3xl px-6 flex justify-center"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 1 }}
+                >
+                    {/* Glow behind image */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-900/10 blur-[100px] rounded-full"></div>
+
+                    <img
+                        src={tetherImg}
+                        alt="Tether Station"
+                        className="w-full h-auto object-contain max-h-[60vh] drop-shadow-2xl"
+                    />
+                </motion.div>
+
+                {/* Alternating Text Blocks */}
+                {/* 1: Left - Autosufficienza */}
+                <motion.div
+                    style={{ opacity: opacity1, x: useTransform(scrollYProgress, [0.1, 0.25], [-50, 0]) }}
+                    className="absolute left-6 md:left-[15%] top-1/2 -translate-y-1/2 max-w-sm text-right z-20 hidden md:block" // Hidden on mobile, handled differently? Or just use stack on mobile? Let's use absolute for standard effect first.
+                >
+                    <div className="border-r-2 border-blue-500 pr-6">
+                        <h4 className="text-2xl font-bold text-white mb-2">Autosufficienza Energetica</h4>
+                        <p className="text-slate-300 font-light">2 batterie integrate garantiscono fino a <strong className="text-white">4 ore</strong> di volo. Hot-swap senza atterraggio.</p>
+                    </div>
+                </motion.div>
+
+                {/* 2: Right - Adattabilità */}
+                <motion.div
+                    style={{ opacity: opacity2, x: useTransform(scrollYProgress, [0.35, 0.45], [50, 0]) }}
+                    className="absolute right-6 md:right-[15%] top-1/2 -translate-y-1/2 max-w-sm text-left z-20 hidden md:block"
+                >
+                    <div className="border-l-2 border-blue-500 pl-6">
+                        <h4 className="text-2xl font-bold text-white mb-2">Adattabilità Immediata</h4>
+                        <p className="text-slate-300 font-light">Conversione rapida da volo libero a tethered tramite modulo <strong className="text-white">Arestelle Air</strong>.</p>
+                    </div>
+                </motion.div>
+
+                {/* 3: Left - Potenza Illimitata */}
+                <motion.div
+                    style={{ opacity: opacity3, x: useTransform(scrollYProgress, [0.55, 0.65], [-50, 0]) }}
+                    className="absolute left-6 md:left-[15%] top-1/2 -translate-y-1/2 max-w-sm text-right z-20 hidden md:block"
+                >
+                    <div className="border-r-2 border-blue-500 pr-6">
+                        <h4 className="text-2xl font-bold text-white mb-2">Potenza Illimitata</h4>
+                        <p className="text-slate-300 font-light">Collegamento a reti esterne (120V/220V) per energia continua e ricarica simultanea.</p>
+                    </div>
+                </motion.div>
+
+                {/* 4: Right - Interoperabilità */}
+                <motion.div
+                    style={{ opacity: opacity4, x: useTransform(scrollYProgress, [0.75, 0.85], [50, 0]) }}
+                    className="absolute right-6 md:right-[15%] top-1/2 -translate-y-1/2 max-w-sm text-left z-20 hidden md:block"
+                >
+                    <div className="border-l-2 border-blue-500 pl-6">
+                        <h4 className="text-2xl font-bold text-white mb-2">Interoperabilità</h4>
+                        <p className="text-slate-300 font-light">Sistema agnostico compatibile con diversi micro-UAV, incluso <strong className="text-white">ANAFI UKR</strong>.</p>
+                    </div>
+                </motion.div>
+
+                {/* Mobile Fallback: Standard Cards if screen is small? 
+                    This layout is tricky on mobile. Let's ensure text is readable.
+                    Ideally on mobile we stack them or just show them fading in/out centered.
+                    For now, focusing on the requested desktop experience.
+                */}
+                <div className="md:hidden absolute bottom-10 w-full px-6 space-y-4">
+                    {/* Simplified View for Mobile - Just cycling text */}
+                    <motion.p style={{ opacity: opacity1 }} className="text-white text-center font-bold">Autosufficienza Energetica</motion.p>
+                    <motion.p style={{ opacity: opacity2 }} className="text-white text-center font-bold">Adattabilità Immediata</motion.p>
+                    <motion.p style={{ opacity: opacity3 }} className="text-white text-center font-bold">Potenza Illimitata</motion.p>
+                    <motion.p style={{ opacity: opacity4 }} className="text-white text-center font-bold">Interoperabilità</motion.p>
+                </div>
+
+            </div>
+        </div>
+    );
+}
+
+function SystemSpecs() {
+    // Specs: Cable(100m), Batteries(2x AC), Charge(USB), IP54, Temp, Weight(12kg), Dims
+    const specs = [
+        { label: "Cavo", value: "100 metri", sub: "Auto-tensionante" },
+        { label: "Alimentazione", value: "2x Batterie", sub: "Ingresso AC 120/220V" },
+        { label: "Output", value: "USB 3.0", sub: "Type A & C (Ricarica rapida)" },
+        { label: "Protezione", value: "IP54", sub: "Polvere e spruzzi" },
+        { label: "Temp. Operativa", value: "-5°C +50°C", sub: "All Weather", icon: "🌡️" }, // Fixed format
+        { label: "Peso", value: "12 kg", sub: "Sistema Totale", icon: "⚖️" },
+        { label: "Dimensioni", value: "60x36 cm", sub: "Compatto", icon: "📐" }, // Fixed dim
+        { label: "Custodia", value: "Rugged", sub: "Alta resistenza" },
+    ];
+
+    return (
+        <div className="py-24 bg-[#080808] border-t border-white/5">
+            <div className="max-w-6xl mx-auto px-6">
+                <div className="text-center mb-16">
+                    <h3 className="text-3xl font-bold text-white mb-4">Specifiche di Sistema</h3>
+                    <div className="w-16 h-1 bg-blue-600 mx-auto rounded-full"></div>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
+                    {specs.map((spec, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            className="text-center group"
+                        >
+                            <div className="text-sm uppercase tracking-widest text-slate-500 mb-2 group-hover:text-blue-400 transition-colors">{spec.label}</div>
+                            <div className="text-2xl md:text-3xl font-bold text-white mb-1">{spec.value}</div>
+                            <div className="text-sm text-slate-400 font-light">{spec.sub}</div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </div>
     );
