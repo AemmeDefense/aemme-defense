@@ -1,4 +1,4 @@
-import visualLogo from '../../assets/visuallogo.png';
+import visualLogo from '../../assets/visuallogo2.png';
 
 export function HomeIntro() {
     return (
