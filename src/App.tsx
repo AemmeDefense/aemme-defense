@@ -24,8 +24,8 @@ import { ProductSlider } from './components/Home/ProductSlider';
 import { PartnersSection } from './components/Home/PartnersSection';
 
 // Asset Imports
-import headerBg from './assets/Headeraemme.png';
-import headerMobileBg from './assets/headerhomemobile.png';
+import headerBg from './assets/Headeraemme.jpg';
+import headerMobileBg from './assets/headerhomemobile.jpg';
 import partner1 from './assets/1.png';
 import partner2 from './assets/2.png';
 import partner3 from './assets/3.png';

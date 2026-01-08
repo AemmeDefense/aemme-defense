@@ -1,3 +1,5 @@
+import posterImg from '../../assets/poster-ebeetac.jpg';
+
 interface EbeeTacHeroProps {
     ebeeTacVideo: string;
 }
@@ -11,6 +13,7 @@ export function EbeeTacHero({ ebeeTacVideo }: EbeeTacHeroProps) {
                 muted
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
+                poster={posterImg}
             >
                 <source src={ebeeTacVideo} type="video/mp4" />
             </video>

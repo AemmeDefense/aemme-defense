@@ -23,7 +23,7 @@ import surfaceVideo from '../assets/digitalsurface.mp4';
 import modelVideo from '../assets/3dmodels.mp4';
 import transportCaseImg from '../assets/ebeetaczaino.png';
 import deployImg from '../assets/ebeetac2.jpg';
-import operatorImg from '../assets/ebeetac3.png';
+import ebeeTac3 from '../assets/ebeetac3.jpg';
 import certImg from '../assets/APPROVED.png';
 import emotionImg from '../assets/emotion.png';
 import reliabilityImg from '../assets/ebeetac4.jpg';
@@ -85,7 +85,7 @@ function EbeeTac({ onContactClick }: EbeeTacProps) {
             <PerformanceStats />
             <FeatureAccordion features={features} />
             <TransportCaseSection transportCaseImg={transportCaseImg} />
-            <FieldOpsSection deployImg={deployImg} operatorImg={operatorImg} />
+            <FieldOpsSection deployImg={deployImg} operatorImg={ebeeTac3} />
             <CertificationSection certImg={certImg} />
             <EMotionSection emotionImg={emotionImg} />
             <ReliabilitySection reliabilityImg={reliabilityImg} />

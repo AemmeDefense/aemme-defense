@@ -41,55 +41,71 @@ import thermalVideo from '../assets/termocamera.mp4';
 import antennaVideo from '../assets/antennaremota.mp4';
 import obstacleVideo from '../assets/evitamentoostacoli.mp4';
 
+// Poster Imports
+import gnssPoster from '../assets/poster-gnssdenied.jpg';
+import radioPoster from '../assets/poster-radio.jpg';
+import zoomPoster from '../assets/poster-ottichezoom.jpg';
+import cursorPoster from '../assets/poster-cursorontarget.jpg';
+import thermalPoster from '../assets/poster-termocamera.jpg';
+import antennaPoster from '../assets/antennaremota_poster.jpg';
+import obstaclePoster from '../assets/poster-evitamentoostacoli.jpg';
+
 const features = [
     {
         id: 'gnss',
         title: "Navigazione ottica GNSS-denied",
         description: "Autoposizionamento e operatività autonoma in condizioni elettromagnetiche ostili e contestate, dove i segnali satellitari non sono disponibili o sono compromessi.",
         detail: "Sistema di navigazione visiva ad alta precisione, completamente indipendente da segnali esterni di posizionamento.",
-        video: gnssVideo
+        video: gnssVideo,
+        poster: gnssPoster
     },
     {
         id: 'radio',
         title: "Architettura Radio Multipla",
         description: "Radio militare MARS con frequency hopping e Radio di backup LoRa. Connettività 5G per raggio operativo virtualmente illimitato.",
         detail: "Wi-Fi per operazioni a corto raggio. Garanzia di link robusto in ogni condizione.",
-        video: radioVideo
+        video: radioVideo,
+        poster: radioPoster
     },
     {
         id: 'zoom',
         title: "Ottiche con zoom 35×",
         description: "Sensore elettro-ottico ad alta risoluzione per osservazione, identificazione e verifica del target a lunga distanza.",
         detail: "Stabilizzazione avanzata per immagini nitide anche al massimo fattore di ingrandimento.",
-        video: zoomVideo
+        video: zoomVideo,
+        poster: zoomPoster
     },
     {
         id: 'cot',
         title: "Cursor-on-target",
         description: "Riconoscimento e Rilevamento degli oggetti: classificazione e tracciamento in tempo reale basati su AI di veicoli, persone e animali.",
         detail: "Calcolo e trasmissione immediata delle coordinate GNSS del target selezionato.",
-        video: cursorVideo
+        video: cursorVideo,
+        poster: cursorPoster
     },
     {
         id: 'thermal',
         title: "Camera termografica",
         description: "Flir Boson 640 in grado di rilevare hotspot centimetrici fino a 40 m. Misurazione delle temperature comprese tra –40 °C e +250 °C.",
         detail: "Visione notturna e capacità di ricerca e soccorso avanzate.",
-        video: thermalVideo
+        video: thermalVideo,
+        poster: thermalPoster
     },
     {
         id: 'antenna',
         title: "Antenna remota",
         description: "Consente comando e controllo sicuri da posizione protetta, anche in operazioni di prima linea o da veicolo blindato.",
         detail: "Distanza operatore-antenna fino a 100 m per massima sicurezza operativa.",
-        video: antennaVideo
+        video: antennaVideo,
+        poster: antennaPoster
     },
     {
         id: 'obstacle',
         title: "Evitamento Ostacoli",
         description: "Rilevamento dinamico degli ostacoli e generazione automatica del percorso di evasione ottimizzato in tempo reale.",
         detail: "Volo sicuro anche in ambienti complessi e urbani.",
-        video: obstacleVideo
+        video: obstacleVideo,
+        poster: obstaclePoster
     }
 ];
 

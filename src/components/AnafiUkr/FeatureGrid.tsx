@@ -7,6 +7,7 @@ interface Feature {
     description: string;
     detail: string;
     video: string;
+    poster?: string;
 }
 
 interface FeatureGridProps {
@@ -110,6 +111,7 @@ export function FeatureGrid({ features }: FeatureGridProps) {
                                             <div className="aspect-video relative">
                                                 <video
                                                     src={feature.video}
+                                                    poster={feature.poster}
                                                     autoPlay
                                                     muted
                                                     loop

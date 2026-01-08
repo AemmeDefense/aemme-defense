@@ -1,4 +1,5 @@
 import ebeevisionVideo from '../../assets/ebeevision1.mp4';
+import posterImg from '../../assets/poster-ebeevision.jpg';
 
 export function EbeeVisionHero() {
     return (
@@ -9,6 +10,7 @@ export function EbeeVisionHero() {
                 muted
                 playsInline
                 className="w-full h-auto object-contain"
+                poster={posterImg}
             >
                 <source src={ebeevisionVideo} type="video/mp4" />
             </video>

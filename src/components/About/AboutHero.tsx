@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import aboutVideo from '../../assets/about.mp4';
+import posterImg from '../../assets/poster-about.jpg';
 
 export function AboutHero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -29,6 +30,7 @@ export function AboutHero() {
                             muted
                             loop
                             playsInline
+                            poster={posterImg}
                         >
                             <source src={aboutVideo} type="video/mp4" />
                         </video>
