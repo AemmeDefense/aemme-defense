@@ -37,14 +37,41 @@ export function ContactsForm() {
             return;
         }
 
+        // Mappings for human-readable labels
+        const entityLabels: Record<string, string> = {
+            'forze_armate': 'Forze Armate',
+            'forze_ordine': "Forze dell'Ordine",
+            'pa': 'Pubblica Amministrazione',
+            'privato_difesa': 'Azienda Privata (Difesa/Sicurezza)',
+            'ingegneria': 'Società Ingegneria / Survey',
+            'altro': 'Altro'
+        };
+
+        const roleLabels: Record<string, string> = {
+            'tecnico': 'Responsabile Tecnico',
+            'acquisti': 'Ufficio Acquisti',
+            'management': 'Direzione / Management',
+            'operatore': 'Operatore',
+            'consulente': 'Consulente',
+            'altro': 'Altro'
+        };
+
+        const requirementLabels: Record<string, string> = {
+            'valutazione': 'Valutazione Tecnica',
+            'pre_acquisto': 'Supporto Pre-Acquisto',
+            'fattibilita': 'Studio di Fattibilità',
+            'integrazione': 'Integrazione Sistemi',
+            'altro': 'Altro'
+        };
+
         const templateParams = {
-            from_name: formData.name,
-            from_email: formData.email,
-            phone: formData.phone,
-            entity_type: formData.entityType,
-            role: formData.role,
-            requirement: formData.requirement,
-            preference: formData.preference,
+            user_name: formData.name,
+            user_email: formData.email,
+            user_phone: formData.phone,
+            entity_type: entityLabels[formData.entityType] || formData.entityType,
+            role: roleLabels[formData.role] || formData.role,
+            requirement: requirementLabels[formData.requirement] || formData.requirement,
+            preference: formData.preference === 'email' ? 'Email' : 'Telefonata',
             message: formData.message,
             privacy_accepted: formData.privacy ? 'Sì' : 'No',
             legality_declared: formData.legality ? 'Sì' : 'No'
