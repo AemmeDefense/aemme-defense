@@ -6,7 +6,11 @@ import { AboutMap } from '../components/About/AboutMap';
 import { CTASection } from '../components/Common/CTASection';
 import mappaItaliaImg from '../assets/mappaitalia.png';
 
-export function About() {
+interface AboutProps {
+    onContactClick: () => void;
+}
+
+export function About({ onContactClick }: AboutProps) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -30,7 +34,7 @@ export function About() {
                     <AboutMap />
                 </div>
 
-                <CTASection mappaItaliaImg={mappaItaliaImg} />
+                <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={onContactClick} />
             </main>
         </div>
     );

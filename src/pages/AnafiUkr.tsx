@@ -93,7 +93,11 @@ const features = [
     }
 ];
 
-function AnafiUkr() {
+interface AnafiUkrProps {
+    onContactClick: () => void;
+}
+
+function AnafiUkr({ onContactClick }: AnafiUkrProps) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -168,7 +172,7 @@ function AnafiUkr() {
             <StarlinkSection starlinkImg={starlinkImg} starlinkLogo={starlinkLogo} />
             <SystemSpecs specsImg={specsImg} />
             <NFZSection nfzImg={nfzImg} noFlyZoneIcon={noFlyZoneIcon} geoFencingIcon={geoFencingIcon} />
-            <CTASection mappaItaliaImg={mappaItaliaImg} />
+            <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={onContactClick} />
 
         </div>
     );

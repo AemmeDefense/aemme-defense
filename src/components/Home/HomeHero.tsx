@@ -1,14 +1,30 @@
 interface HomeHeroProps {
     headerBg: string;
+    headerMobileBg?: string;
     onSolutionsClick: () => void;
     onContactClick: () => void;
 }
 
-export function HomeHero({ headerBg, onSolutionsClick, onContactClick }: HomeHeroProps) {
+export function HomeHero({ headerBg, headerMobileBg, onSolutionsClick, onContactClick }: HomeHeroProps) {
     return (
         <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[80vh] flex items-center">
             <div className="absolute inset-0 z-0">
-                <img src={headerBg} alt="Tactical Background" className="w-full h-full object-cover brightness-110 opacity-100" />
+                {/* Desktop Image */}
+                <img
+                    src={headerBg}
+                    alt="Tactical Background Desktop"
+                    className={`w-full h-full object-cover brightness-110 opacity-100 ${headerMobileBg ? 'hidden md:block' : 'block'}`}
+                />
+
+                {/* Mobile Image (if provided) */}
+                {headerMobileBg && (
+                    <img
+                        src={headerMobileBg}
+                        alt="Tactical Background Mobile"
+                        className="w-full h-full object-cover brightness-110 opacity-100 block md:hidden"
+                    />
+                )}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/10 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/30 to-transparent" />
             </div>

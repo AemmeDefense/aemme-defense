@@ -69,7 +69,11 @@ const features = [
     }
 ];
 
-function EbeeTac() {
+interface EbeeTacProps {
+    onContactClick: () => void;
+}
+
+function EbeeTac({ onContactClick }: EbeeTacProps) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -87,7 +91,7 @@ function EbeeTac() {
             <ReliabilitySection reliabilityImg={reliabilityImg} />
             <SafeOpsSection safeOpsImg={safeOpsImg} />
             <NDAASection ndaaImg={ndaaImg} />
-            <CTASection mappaItaliaImg={mappaItaliaImg} />
+            <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={onContactClick} />
         </div >
     );
 }

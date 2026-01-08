@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+
 import { motion } from 'framer-motion';
 import { Check, Loader2, Send } from 'lucide-react';
 
@@ -24,36 +26,39 @@ export function ContactsForm() {
         e.preventDefault();
         setIsLoading(true);
 
-        // Simulate processing delay for effect
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_e6ebuzz';
+        const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_kxf6qyz';
+        const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'q85FYGi4XRidPDa6_';
 
-        // Construct email body for testing
-        const subject = `Richiesta Consulenza Web: ${formData.entityType}`;
-        const body = `
-Dettagli Nuova Richiesta:
---------------------------------
-Nome e Cognome: ${formData.name}
-Email Istituzionale: ${formData.email}
-Telefono: ${formData.phone}
+        if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+            console.error('EmailJS configuration missing');
+            alert('Configurazione email mancante. Contatta l\'amministratore.');
+            setIsLoading(false);
+            return;
+        }
 
-Tipologia Ente: ${formData.entityType}
-Ruolo: ${formData.role}
-Tipo Esigenza: ${formData.requirement}
-Preferenza Contatto: ${formData.preference}
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            entity_type: formData.entityType,
+            role: formData.role,
+            requirement: formData.requirement,
+            preference: formData.preference,
+            message: formData.message,
+            privacy_accepted: formData.privacy ? 'Sì' : 'No',
+            legality_declared: formData.legality ? 'Sì' : 'No'
+        };
 
-Descrizione Messaggio:
-${formData.message}
-
---------------------------------
-Privacy Accettata: ${formData.privacy ? 'Sì' : 'No'}
-Dichiarazione Legittimità: ${formData.legality ? 'Sì' : 'No'}
-        `;
-
-        // Redirect to email client
-        window.location.href = `mailto:marketing@aemmere.it?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        setIsLoading(false);
-        setIsSuccess(true);
+        try {
+            await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+            setIsSuccess(true);
+        } catch (error) {
+            console.error('FAILED...', error);
+            alert('Errore nell\'invio. Riprova più tardi o scrivici direttamente a marketing@aemmere.it');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

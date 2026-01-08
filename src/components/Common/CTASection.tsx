@@ -1,8 +1,9 @@
 interface CTASectionProps {
     mappaItaliaImg: string;
+    onContactClick?: () => void;
 }
 
-export function CTASection({ mappaItaliaImg }: CTASectionProps) {
+export function CTASection({ mappaItaliaImg, onContactClick }: CTASectionProps) {
     return (
         <div id="cta-section" className="relative bg-[#050505] overflow-hidden py-32">
             <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -28,7 +29,10 @@ export function CTASection({ mappaItaliaImg }: CTASectionProps) {
                             <p className="text-slate-300 text-lg md:text-xl mb-10 leading-relaxed max-w-lg border-l-4 border-blue-900/50 pl-6">
                                 Forniamo consulenza tecnica avanzata e sviluppiamo soluzioni su misura, progettate per rispondere con precisione a ogni scenario operativo. Richiedi una consulenza specializzata, disponibile su tutto il territorio nazionale.
                             </p>
-                            <button className="group relative px-10 py-5 bg-[#152d50] hover:bg-[#1e3a63] text-white font-bold rounded-sm uppercase tracking-widest transition-all overflow-hidden">
+                            <button
+                                onClick={onContactClick}
+                                className="group relative px-10 py-5 bg-[#152d50] hover:bg-[#1e3a63] text-white font-bold rounded-sm uppercase tracking-widest transition-all overflow-hidden"
+                            >
                                 <span className="relative z-10 flex items-center gap-3">
                                     Richiedi Consulenza
                                     <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

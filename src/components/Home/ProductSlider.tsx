@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, type ReactNode } from 'react';
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Product {
     id: number;
@@ -7,7 +8,7 @@ interface Product {
     tagColor: string;
     description: string;
     image: string;
-    specs: { label: string; value: string; icon: ReactNode }[];
+    specs: { label: string; value: string; icon: React.ReactNode }[];
 }
 
 interface ProductSliderProps {
@@ -16,80 +17,125 @@ interface ProductSliderProps {
 }
 
 export function ProductSlider({ products, onProductClick }: ProductSliderProps) {
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const [scrollProgress, setScrollProgress] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!scrollRef.current) return;
-            const rect = scrollRef.current.getBoundingClientRect();
-            const offsetTop = rect.top;
-            const height = rect.height;
-            const windowHeight = window.innerHeight;
-            let percentage = ((-offsetTop) / (height - windowHeight)) * 100;
-            percentage = Math.min(Math.max(percentage, 0), 100);
-            setScrollProgress(percentage);
-        };
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % products.length);
+    };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+    };
+
+    const ProductCard = ({ product }: { product: Product }) => (
+        <div
+            onClick={() => onProductClick(product.id)}
+            className="bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full cursor-pointer relative"
+        >
+            {/* Image Area */}
+            <div className="h-[250px] relative overflow-hidden border-b border-white/5 bg-black">
+                <div className="absolute top-6 right-6 z-20">
+                    <span className={`px-4 py-2 backdrop-blur-md text-[10px] font-mono font-bold uppercase border rounded tracking-widest ${product.tagColor}`}>
+                        {product.tag}
+                    </span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 z-10" />
+                <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+            </div>
+
+            {/* Content Area */}
+            <div className="p-8 flex flex-col flex-grow justify-between">
+                <div>
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                        {product.name}
+                    </h3>
+                    <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                        {product.description}
+                    </p>
+
+                    {/* Specs Grid */}
+                    <div className="grid grid-cols-2 gap-4 mb-8 border-t border-white/5 pt-6">
+                        {product.specs.slice(0, 4).map((spec, index) => (
+                            <div key={index} className="flex items-center gap-3">
+                                <div className="text-blue-400 flex-shrink-0">
+                                    {spec.icon}
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">{spec.label}</span>
+                                    <span className="text-sm font-bold text-white">{spec.value}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <button
+                    className="w-full py-4 bg-blue-900/10 border border-blue-500/30 hover:bg-blue-600 hover:border-blue-500 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-blue-900/20"
+                >
+                    Scopri Dettagli
+                </button>
+            </div>
+        </div>
+    );
 
     return (
-        <div ref={scrollRef} className="relative h-[300vh] bg-[#050505]">
-            <div className="sticky top-0 h-screen flex flex-col justify-start pt-0 overflow-hidden">
-                <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-8 flex-shrink-0 z-10 text-center pt-20">
-                    <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-4 inline-block relative">
+        <div className="py-24 bg-[#050505] relative border-t border-white/5">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                {/* Header */}
+                <div className="mb-16 text-center">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                         Sistemi Tattici
-                        <div className="absolute -bottom-2 left-0 right-0 h-[2px] bg-blue-500/50 rounded-full blur-[1px]"></div>
                     </h2>
-                    <p className="text-slate-400 text-lg uppercase tracking-widest font-medium">Soluzioni operative per contesti critici</p>
+                    <p className="text-slate-400 text-lg uppercase tracking-widest font-medium">
+                        Soluzioni operative per contesti critici
+                    </p>
                 </div>
 
-                <div
-                    className="flex gap-8 px-[10vw] w-max transition-transform duration-100 ease-out"
-                    style={{ transform: `translateX(-${scrollProgress * 0.55}%)` }}
-                >
+                {/* DESKTOP: 2x2 Grid */}
+                <div className="hidden md:grid grid-cols-2 gap-8">
                     {products.map((product) => (
-                        <div key={product.id} className="w-[90vw] md:w-[700px] bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex-shrink-0 group hover:border-blue-500/50 transition-all duration-300 flex flex-col">
-                            <div className="h-[300px] relative overflow-hidden border-b border-white/5 bg-black">
-                                <div className="absolute top-6 right-6 z-20">
-                                    <span className={`px-4 py-2 backdrop-blur-md text-xs font-mono font-bold uppercase border rounded tracking-widest ${product.tagColor}`}>
-                                        {product.tag}
-                                    </span>
-                                </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 z-10" />
-                                <img src={product.image} alt={product.name} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                            </div>
-
-                            <div className="p-6 flex flex-col justify-between flex-grow bg-[#0a0a0a] relative">
-                                <div>
-                                    <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{product.name}</h3>
-                                    <p className="text-slate-400 mb-6 text-sm leading-relaxed max-w-lg line-clamp-2">
-                                        {product.description}
-                                    </p>
-                                    <div className="flex flex-wrap gap-6 mb-6 text-xs text-slate-400 border-t border-white/5 pt-4">
-                                        {product.specs.map((spec, index) => (
-                                            <div key={index} className="flex items-center gap-3">
-                                                <div className="text-blue-400">
-                                                    {spec.icon}
-                                                </div>
-                                                <span className="font-bold text-white tracking-wider">{spec.value}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <button
-                                    onClick={() => onProductClick(product.id)}
-                                    className="w-full py-4 bg-blue-900/20 border border-blue-500/30 hover:bg-blue-600 hover:border-blue-500 text-white rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-normal transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] cursor-pointer"
-                                >
-                                    Scopri il Sistema
-                                </button>
-                            </div>
-                        </div>
+                        <ProductCard key={product.id} product={product} />
                     ))}
-                    <div className="w-[5vw]"></div>
                 </div>
+
+                {/* MOBILE: Single Card Slider */}
+                <div className="md:hidden relative px-4">
+                    <div className="mb-8">
+                        <ProductCard product={products[currentIndex]} />
+                    </div>
+
+                    {/* Mobile Controls */}
+                    <div className="flex justify-between items-center px-4">
+                        <button
+                            onClick={prevSlide}
+                            className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-colors active:scale-95"
+                        >
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+
+                        <div className="flex gap-2">
+                            {products.map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? 'bg-blue-500' : 'bg-white/20'}`}
+                                />
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={nextSlide}
+                            className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-colors active:scale-95"
+                        >
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

@@ -25,6 +25,7 @@ import { PartnersSection } from './components/Home/PartnersSection';
 
 // Asset Imports
 import headerBg from './assets/Headeraemme.png';
+import headerMobileBg from './assets/headerhomemobile.png';
 import partner1 from './assets/1.png';
 import partner2 from './assets/2.png';
 import partner3 from './assets/3.png';
@@ -145,20 +146,23 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'ebee-tac':
-        return <EbeeTac />;
+        return <EbeeTac onContactClick={() => setCurrentPage('contacts')} />;
       case 'anafi-ukr':
-        return <AnafiUkr />;
+        return <AnafiUkr onContactClick={() => setCurrentPage('contacts')} />;
       case 'ebee-vision':
-        return <EbeeVision />;
+        return <EbeeVision onContactClick={() => setCurrentPage('contacts')} />;
       case 'imsi-catcher':
-        return <IMSICatcher />;
+        return <IMSICatcher onContactClick={() => setCurrentPage('contacts')} />;
       case 'solutions':
-        return <Solutions onProductClick={(id) => {
-          if (id === 1) setCurrentPage('ebee-tac');
-          else if (id === 2) setCurrentPage('ebee-vision');
-          else if (id === 3) setCurrentPage('anafi-ukr');
-          else if (id === 4) setCurrentPage('imsi-catcher');
-        }} />;
+        return <Solutions
+          onProductClick={(id) => {
+            if (id === 1) setCurrentPage('ebee-tac');
+            else if (id === 2) setCurrentPage('ebee-vision');
+            else if (id === 3) setCurrentPage('anafi-ukr');
+            else if (id === 4) setCurrentPage('imsi-catcher');
+          }}
+          onContactClick={() => setCurrentPage('contacts')}
+        />;
       case 'contacts':
         return <Contacts />;
       case 'privacy':
@@ -166,12 +170,13 @@ function App() {
       case 'cookie-policy':
         return <CookiePolicy />;
       case 'about':
-        return <About />;
+        return <About onContactClick={() => setCurrentPage('contacts')} />;
       default:
         return (
           <>
             <HomeHero
               headerBg={headerBg}
+              headerMobileBg={headerMobileBg}
               onSolutionsClick={() => setCurrentPage('solutions')}
               onContactClick={() => setCurrentPage('contacts')}
             />
@@ -203,7 +208,7 @@ function App() {
               }}
             />
             <PartnersSection partners={partners} />
-            <CTASection mappaItaliaImg={mappaItaliaImg} />
+            <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={() => setCurrentPage('contacts')} />
           </>
         );
     }

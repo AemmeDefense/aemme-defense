@@ -13,7 +13,11 @@ import { EbeeVisionBrochure } from '../components/EbeeVision/EbeeVisionBrochure'
 import { CTASection } from '../components/Common/CTASection';
 import mappaItaliaImg from '../assets/mappaitalia.png';
 
-export function EbeeVision() {
+interface EbeeVisionProps {
+    onContactClick: () => void;
+}
+
+export function EbeeVision({ onContactClick }: EbeeVisionProps) {
     return (
         <div className="bg-black min-h-screen text-white">
             <EbeeVisionHero />
@@ -27,7 +31,7 @@ export function EbeeVision() {
             <EbeeVisionTechSpecs />
             <EbeeVisionNDAA />
             <EbeeVisionBrochure />
-            <CTASection mappaItaliaImg={mappaItaliaImg} />
+            <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={onContactClick} />
         </div>
     );
 }

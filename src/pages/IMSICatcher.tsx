@@ -14,7 +14,11 @@ import { CTASection } from '../components/Common/CTASection';
 // Asset Imports
 import mappaItaliaImg from '../assets/mappaitalia.png';
 
-function IMSICatcher() {
+interface IMSICatcherProps {
+    onContactClick: () => void;
+}
+
+function IMSICatcher({ onContactClick }: IMSICatcherProps) {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -31,7 +35,7 @@ function IMSICatcher() {
             <IntegrationFinal />
             <IMSICatcherApplications />
             <IMSICatcherInterface />
-            <CTASection mappaItaliaImg={mappaItaliaImg} />
+            <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={onContactClick} />
         </div>
     );
 }
