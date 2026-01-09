@@ -16,7 +16,7 @@ export function ContactsInfo() {
                     viewport={{ once: true }}
                     className="mb-12"
                 >
-                    <img src={logo} alt="Aemme Defense" className="h-12 w-auto mb-8" />
+                    <img src={logo} alt="AEMME Defense" className="h-12 w-auto mb-8" />
                     <h2 className="text-3xl font-bold text-white mb-4">
                         Parla con i nostri esperti
                     </h2>

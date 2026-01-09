@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aemmedefense.it/sitemap.xml

@@ -45,7 +45,7 @@ export function SolutionsHero({ onContactClick }: SolutionsHeroProps) {
                             className="space-y-8"
                         >
                             <p className="text-gray-400 text-lg leading-relaxed border-l border-white/10 pl-6">
-                                Aemme Defense propone una selezione mirata di soluzioni tecnologiche dedicate ad applicazioni istituzionali e professionali in ambito sicurezza, difesa e controllo del territorio.
+                                AEMME Defense propone una selezione mirata di soluzioni tecnologiche dedicate ad applicazioni istituzionali e professionali in ambito sicurezza, difesa e controllo del territorio.
                             </p>
                             <p className="text-gray-400 text-lg leading-relaxed pl-6">
                                 Le soluzioni presentate offrono affidabilità, integrazione immediata e supporto operativo, nel rispetto degli standard militari ed enterprise.
