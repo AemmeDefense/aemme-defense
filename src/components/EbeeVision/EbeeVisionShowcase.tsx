@@ -32,8 +32,7 @@ export function EbeeVisionShowcase() {
                 </motion.div>
             </motion.div>
 
-            {/* Background Grid Hint */}
-            <div className="absolute inset-0 bg-[url('/grid-pixel.png')] opacity-10 pointer-events-none mix-blend-screen" />
+
         </section>
     );
 }

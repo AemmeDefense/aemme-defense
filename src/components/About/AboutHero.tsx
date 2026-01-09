@@ -35,8 +35,7 @@ export function AboutHero() {
                             <source src={aboutVideo} type="video/mp4" />
                         </video>
 
-                        {/* Grid Effect */}
-                        <div className="absolute inset-0 bg-[url('/grid-pixel.png')] opacity-20 mix-blend-overlay pointer-events-none" />
+
 
                         {/* Gradient for Title Readability - Shifted to Left Side */}
                         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />

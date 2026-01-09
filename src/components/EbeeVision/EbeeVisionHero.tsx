@@ -15,7 +15,7 @@ export function EbeeVisionHero() {
                 <source src={ebeevisionVideo} type="video/mp4" />
             </video>
             {/* Grid Overlay - consistent with EbeeTac style */}
-            <div className="absolute inset-0 bg-[url('/grid-pixel.png')] opacity-20 mix-blend-overlay"></div>
+
 
             {/* Bottom Gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-80% to-[#050505]"></div>

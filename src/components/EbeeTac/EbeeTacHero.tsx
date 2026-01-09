@@ -17,7 +17,7 @@ export function EbeeTacHero({ ebeeTacVideo }: EbeeTacHeroProps) {
             >
                 <source src={ebeeTacVideo} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-[url('/grid-pixel.png')] opacity-20 mix-blend-overlay"></div>
+
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-80% to-[#050505]"></div>
             <div
                 className="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-80 animate-bounce cursor-pointer p-2"
