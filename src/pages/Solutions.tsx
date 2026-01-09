@@ -17,7 +17,7 @@ export function Solutions({ onProductClick, onContactClick }: SolutionsProps) {
 
     return (
         <div className="min-h-screen bg-[#050505] text-white font-sans">
-            <SolutionsHero />
+            <SolutionsHero onContactClick={onContactClick} />
             <SolutionsList onProductClick={onProductClick} />
             <CTASection mappaItaliaImg={mappaItaliaImg} onContactClick={onContactClick} />
         </div>

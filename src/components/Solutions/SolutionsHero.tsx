@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 
-export function SolutionsHero() {
+interface SolutionsHeroProps {
+    onContactClick?: () => void;
+}
+
+export function SolutionsHero({ onContactClick }: SolutionsHeroProps) {
     return (
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 bg-[#050505] overflow-hidden">
             {/* Background Elements */}
@@ -48,14 +52,13 @@ export function SolutionsHero() {
                             </p>
 
                             <div className="pl-6 pt-4">
-                                <a
-                                    href="#contact"
-                                    onClick={(e) => { e.preventDefault(); document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth' }); }}
+                                <button
+                                    onClick={onContactClick}
                                     className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-widest text-xs hover:text-blue-400 transition-colors group"
                                 >
                                     Contatta il team
                                     <span className="block h-px w-8 bg-blue-500 group-hover:w-16 transition-all" />
-                                </a>
+                                </button>
                             </div>
                         </motion.div>
                     </div>
