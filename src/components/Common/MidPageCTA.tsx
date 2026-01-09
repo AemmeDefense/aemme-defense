@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 
-export function MidPageCTA() {
+interface MidPageCTAProps {
+    onContactClick?: () => void;
+}
+
+export function MidPageCTA({ onContactClick }: MidPageCTAProps) {
     return (
         <section className="pt-32 pb-20 bg-black relative overflow-hidden border-t border-white/5">
             {/* Background Detail */}
@@ -24,7 +28,13 @@ export function MidPageCTA() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="group relative px-8 py-4 bg-[#152d50] hover:bg-[#1e3a63] text-white font-bold rounded-sm uppercase tracking-widest transition-all overflow-hidden whitespace-nowrap border border-blue-500/30 hover:border-blue-400"
-                        onClick={() => document.getElementById('contattaci')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => {
+                            if (onContactClick) {
+                                onContactClick();
+                            } else {
+                                document.getElementById('contattaci')?.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
                     >
                         <span className="relative z-10 flex items-center gap-3 text-sm">
                             Parliamo del tuo progetto

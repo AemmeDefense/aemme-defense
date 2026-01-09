@@ -1,16 +1,20 @@
 import visualLogo from '../../assets/visuallogo2.png';
 
-export function HomeIntro() {
+interface HomeIntroProps {
+    onAboutClick: () => void;
+}
+
+export function HomeIntro({ onAboutClick }: HomeIntroProps) {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="order-2 md:order-1">
                     <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
                         <span className="w-8 h-1 bg-[#152d50]"></span>
-                        Esperienza che fa la differenza
+                        ESPERIENZA CHE FA LA DIFFERENZA
                     </h2>
                     <p className="text-white text-lg leading-relaxed cursor-default">
-                        {"Da anni supportiamo i principali enti di Difesa, Forze dell’Ordine e operatori della sicurezza con tecnologie affidabili e soluzioni tattiche di alto livello. La nostra esperienza diretta e la selezione dei migliori prodotti internazionali ci permettono di garantire prestazioni solide, continuità operativa e risultati misurabili in ogni scenario.".split(" ").map((word, index) => (
+                        {"Da anni supportiamo i principali Enti della Difesa, Organismi di Informazione e Sicurezza, e Forze dell’Ordine con tecnologie affidabili e soluzioni tattiche di alto livello. La selezione dei migliori brand internazionali, produttori delle migliori tecnologie americane ed europee, unitamente alla nostra esperienza sul campo, ci permettono di garantire prestazioni avanzate per applicazioni specifiche militari, continuità operativa assicurata da lunghe autonomie di volo ed acquisizione di informazioni dettagliate in ogni scenario.".split(" ").map((word, index) => (
                             <span key={index} className="inline-block hover:text-blue-400 hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.8)] transition-all duration-300 mx-[2px]">
                                 {word}
                             </span>
@@ -18,7 +22,10 @@ export function HomeIntro() {
                     </p>
 
                     <div className="mt-8">
-                        <button className="group flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-blue-300 uppercase py-3 border-b border-blue-500/30 hover:border-blue-400 transition-all duration-300">
+                        <button
+                            onClick={onAboutClick}
+                            className="group flex items-center gap-3 text-xs font-bold tracking-[0.2em] text-blue-300 uppercase py-3 border-b border-blue-500/30 hover:border-blue-400 transition-all duration-300"
+                        >
                             Scopri la nostra storia
                             <span className="transform group-hover:translate-x-2 transition-transform duration-300 text-blue-400">→</span>
                         </button>

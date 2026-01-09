@@ -34,11 +34,6 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
         >
             {/* Image Area */}
             <div className="h-[250px] relative overflow-hidden border-b border-white/5 bg-black">
-                <div className="absolute top-6 right-6 z-20">
-                    <span className={`px-4 py-2 backdrop-blur-md text-[10px] font-mono font-bold uppercase border rounded tracking-widest ${product.tagColor}`}>
-                        {product.tag}
-                    </span>
-                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 z-10" />
                 <img
                     src={product.image}
@@ -87,12 +82,12 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 {/* Header */}
-                <div className="mb-16 text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Sistemi Tattici
+                <div className="mb-16 text-center max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                        Soluzioni professionali per ricognizione, sorveglianza e superiorità informativa
                     </h2>
-                    <p className="text-slate-400 text-lg uppercase tracking-widest font-medium">
-                        Soluzioni operative per contesti critici
+                    <p className="text-slate-400 text-lg leading-relaxed">
+                        Sistemi UAV e strumenti d’intelligence progettati per supportare missioni critiche, con specifiche create appositamente per il settore militare e delle Forze dell’Ordine.
                     </p>
                 </div>
 

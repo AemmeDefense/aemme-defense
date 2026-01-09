@@ -183,7 +183,7 @@ function AnafiUkr({ onContactClick }: AnafiUkrProps) {
 
             <PerformanceSection performanceImg={performanceImg} />
             <NightVisionSection nightVisionImg={nightVisionImg} />
-            <MidPageCTA />
+            <MidPageCTA onContactClick={onContactClick} />
             <TetherSection tetherImg={tetherImg} />
             <StarlinkSection starlinkImg={starlinkImg} starlinkLogo={starlinkLogo} />
             <SystemSpecs specsImg={specsImg} />

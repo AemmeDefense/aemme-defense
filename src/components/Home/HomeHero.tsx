@@ -31,21 +31,8 @@ export function HomeHero({ headerBg, headerMobileBg, onSolutionsClick, onContact
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div className="mt-8"></div>
                 <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/80 max-w-4xl mx-auto">
-                    Tecnologie tattiche per chi opera sul campo.
+                    Droni, sensori e software per Intelligence aerea avanzata
                 </h1>
-                <p className="mt-4 max-w-3xl mx-auto text-xl text-blue-100 font-medium leading-relaxed cursor-default">
-                    {"Soluzioni professionali per ricognizione, sorveglianza e superiorità informativa.".split(" ").map((word, index) => (
-                        <span key={`p1-${index}`} className="inline-block hover:text-blue-400 hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.8)] transition-all duration-300 mx-[2px]">
-                            {word}
-                        </span>
-                    ))}
-                    <br className="block mb-2" />
-                    {"Sistemi UAV e strumenti d’intelligence progettati per supportare missioni critiche, con prestazioni certificate per ambito militare e law enforcement.".split(" ").map((word, index) => (
-                        <span key={`p2-${index}`} className="inline-block hover:text-blue-400 hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.8)] transition-all duration-300 mx-[2px]">
-                            {word}
-                        </span>
-                    ))}
-                </p>
                 <div className="mt-10 flex justify-center gap-4">
                     <button
                         onClick={onSolutionsClick}

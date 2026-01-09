@@ -159,7 +159,7 @@ export function ContactsForm() {
 
                 {/* Phone */}
                 <div className="space-y-2">
-                    <label className="text-xs font-mono text-gray-500 uppercase tracking-widest">Telefono (Opzionale)</label>
+                    <label className="text-xs font-mono text-gray-500 uppercase tracking-widest">Telefono</label>
                     <input
                         name="phone"
                         value={formData.phone}
