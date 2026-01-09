@@ -26,7 +26,7 @@ export function ContactsForm() {
         e.preventDefault();
         setIsLoading(true);
 
-        const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_e6ebuzz';
+        const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_pfpznj7';
         const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_kxf6qyz';
         const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'q85FYGi4XRidPDa6_';
 
