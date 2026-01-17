@@ -6,7 +6,7 @@ interface EbeeTacHeroProps {
 
 export function EbeeTacHero({ ebeeTacVideo }: EbeeTacHeroProps) {
     return (
-        <div className="relative h-screen w-full overflow-hidden">
+        <div className="relative w-full h-auto aspect-video md:h-screen md:aspect-auto overflow-hidden">
             <video
                 autoPlay
                 loop

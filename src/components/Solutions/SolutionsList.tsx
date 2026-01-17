@@ -72,72 +72,99 @@ export function SolutionsList({ onProductClick }: SolutionsListProps) {
         <section className="relative bg-[#050505] pb-32">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="flex flex-col gap-32 md:gap-48">
-                    {products.map((product, index) => (
-                        <motion.div
-                            key={product.id}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-                            transition={{ duration: 0.8 }}
-                            className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-24`}
-                        >
-
-                            {/* TEXT CONTENT */}
-                            <div className="w-full lg:w-1/2">
-                                <motion.div
-                                    initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.2 }}
-                                >
-                                    {/* Tag removed per user request */}
-
-                                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                                        {product.name}
-                                    </h2>
-
-                                    <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                                        {product.description}
-                                    </p>
-
-
-
-                                    <button
-                                        onClick={() => onProductClick(product.id)}
-                                        className="group inline-flex items-center gap-4 text-white font-bold uppercase tracking-widest hover:text-blue-400 transition-colors"
-                                    >
-                                        Scopri Dettagli
-                                        <div className="p-3 border border-white/20 rounded-full group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all">
-                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                        </div>
-                                    </button>
-                                </motion.div>
-                            </div>
-
-                            {/* IMAGE CONTENT */}
-                            <div className="w-full lg:w-1/2">
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.8 }}
-                                    className="relative aspect-video lg:aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 group bg-[#0a0a0a]"
-                                >
+                    {/* MOBILE VIEW: Simple Cards */}
+                    <div className="flex md:hidden flex-col gap-8">
+                        {products.map((product) => (
+                            <div
+                                key={product.id}
+                                onClick={() => onProductClick(product.id)}
+                                className="bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden active:scale-[0.98] transition-transform cursor-pointer"
+                            >
+                                {/* Image Top */}
+                                <div className="aspect-video w-full relative">
                                     <img
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                                        className="w-full h-full object-cover"
                                     />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                                    <div className="absolute bottom-4 left-4">
+                                        <h3 className="text-2xl font-bold text-white">{product.name}</h3>
+                                        <span className="text-blue-400 text-xs font-mono uppercase tracking-wider">{product.tag}</span>
+                                    </div>
+                                </div>
 
-                                    {/* Overlays */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent opacity-60" />
-                                    <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay" />
-
-                                    {/* Shine Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                                </motion.div>
+                                {/* Text Bottom */}
+                                <div className="p-5">
+                                    <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                                        {product.description}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-wider">
+                                        Scopri Dettagli <ArrowRight className="w-4 h-4 text-blue-500" />
+                                    </div>
+                                </div>
                             </div>
+                        ))}
+                    </div>
 
-                        </motion.div>
-                    ))}
+                    {/* DESKTOP VIEW: Alternating Grid */}
+                    <div className="hidden md:flex flex-col gap-48">
+                        {products.map((product, index) => (
+                            <motion.div
+                                key={product.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                                transition={{ duration: 0.8 }}
+                                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-24`}
+                            >
+                                {/* ... (Original Desktop Code) ... */}
+                                {/* TEXT CONTENT */}
+                                <div className="w-full lg:w-1/2">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.8, delay: 0.2 }}
+                                    >
+                                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                                            {product.name}
+                                        </h2>
+                                        <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                                            {product.description}
+                                        </p>
+                                        <button
+                                            onClick={() => onProductClick(product.id)}
+                                            className="group inline-flex items-center gap-4 text-white font-bold uppercase tracking-widest hover:text-blue-400 transition-colors"
+                                        >
+                                            Scopri Dettagli
+                                            <div className="p-3 border border-white/20 rounded-full group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all">
+                                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                            </div>
+                                        </button>
+                                    </motion.div>
+                                </div>
+
+                                {/* IMAGE CONTENT */}
+                                <div className="w-full lg:w-1/2">
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.8 }}
+                                        className="relative aspect-video lg:aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 group bg-[#0a0a0a]"
+                                    >
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent opacity-60" />
+                                        <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay" />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                                    </motion.div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

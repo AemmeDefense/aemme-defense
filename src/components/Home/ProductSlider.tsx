@@ -67,7 +67,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
             className={`bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full cursor-pointer relative ${isMobile ? 'shadow-2xl shadow-black/50' : ''}`}
         >
             {/* Image Area */}
-            <div className={`${isMobile ? 'h-[320px]' : 'h-[250px]'} relative overflow-hidden border-b border-white/5 bg-black`}>
+            <div className={`${isMobile ? 'h-[220px]' : 'h-[250px]'} relative overflow-hidden border-b border-white/5 bg-black`}>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 z-10" />
                 <img
                     src={product.image}
@@ -77,17 +77,17 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
             </div>
 
             {/* Content Area */}
-            <div className="p-8 flex flex-col flex-grow justify-between">
+            <div className={`${isMobile ? 'p-5' : 'p-8'} flex flex-col flex-grow justify-between`}>
                 <div>
-                    <h3 className={`${isMobile ? 'text-3xl' : 'text-2xl'} font-bold text-white mb-4 group-hover:text-blue-400 transition-colors`}>
+                    <h3 className={`${isMobile ? 'text-2xl' : 'text-2xl'} font-bold text-white mb-3 group-hover:text-blue-400 transition-colors`}>
                         {product.name}
                     </h3>
-                    <p className={`${isMobile ? 'text-base' : 'text-sm text-slate-400'} leading-relaxed mb-6 line-clamp-3 text-slate-300`}>
+                    <p className={`${isMobile ? 'text-sm' : 'text-sm text-slate-400'} leading-relaxed mb-6 line-clamp-3 text-slate-300`}>
                         {product.description}
                     </p>
 
                     {/* Specs Grid */}
-                    <div className="grid grid-cols-2 gap-4 mb-8 border-t border-white/5 pt-6">
+                    <div className="grid grid-cols-2 gap-4 mb-6 border-t border-white/5 pt-4">
                         {product.specs.slice(0, 4).map((spec, index) => (
                             <div key={index} className="flex items-center gap-3">
                                 <div className="text-blue-400 flex-shrink-0">
@@ -95,7 +95,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-[10px] text-slate-500 uppercase tracking-wider">{spec.label}</span>
-                                    <span className={`${isMobile ? 'text-base' : 'text-sm'} font-bold text-white`}>{spec.value}</span>
+                                    <span className={`${isMobile ? 'text-sm' : 'text-sm'} font-bold text-white`}>{spec.value}</span>
                                 </div>
                             </div>
                         ))}
@@ -103,7 +103,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
                 </div>
 
                 <button
-                    className={`w-full ${isMobile ? 'py-5 text-sm' : 'py-4 text-xs'} bg-blue-900/10 border border-blue-500/30 hover:bg-blue-600 hover:border-blue-500 text-white rounded-xl font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-blue-900/20`}
+                    className={`w-full ${isMobile ? 'py-4 text-xs' : 'py-4 text-xs'} bg-blue-900/10 border border-blue-500/30 hover:bg-blue-600 hover:border-blue-500 text-white rounded-xl font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-blue-900/20`}
                 >
                     Scopri Dettagli
                 </button>

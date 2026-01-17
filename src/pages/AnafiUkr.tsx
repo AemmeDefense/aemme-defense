@@ -122,7 +122,7 @@ function AnafiUkr({ onContactClick }: AnafiUkrProps) {
         <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-blue-500/30">
 
             {/* HERO SECTION */}
-            <div className="relative h-screen w-full overflow-hidden flex flex-col justify-end">
+            <div className="relative w-full h-auto aspect-video md:h-screen overflow-hidden flex flex-col justify-end">
                 <div className="absolute inset-0 z-0">
                     <img src={headerImg} alt="Parrot ANAFI UKR" className="w-full h-full object-cover md:object-center opacity-90" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent z-10"></div>

@@ -3,7 +3,7 @@ import headerImg from '../../assets/imsiheader.jpg';
 
 export function IMSICatcherHero() {
     return (
-        <section className="relative h-screen w-full overflow-hidden flex flex-col justify-end">
+        <section className="relative w-full h-auto aspect-video md:h-screen overflow-hidden flex flex-col justify-end">
             {/* Background Image & Gradient */}
             <div className="absolute inset-0 z-0">
                 <img
