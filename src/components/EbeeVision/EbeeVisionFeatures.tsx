@@ -10,7 +10,7 @@ const features = [
         img: featureImg1,
         text: (
             <>
-                Peso ridotto: 1,5 kg
+                Peso ridotto: 1,8 kg
             </>
         )
     },
