@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 
 interface Product {
     id: number;
@@ -18,22 +19,54 @@ interface ProductSliderProps {
 
 export function ProductSlider({ products, onProductClick }: ProductSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState(0);
 
     const nextSlide = () => {
+        setDirection(1);
         setCurrentIndex((prev) => (prev + 1) % products.length);
     };
 
     const prevSlide = () => {
+        setDirection(-1);
         setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
     };
 
-    const ProductCard = ({ product }: { product: Product }) => (
+    const handleDragEnd = (_: any, info: PanInfo) => {
+        const threshold = 50;
+        if (info.offset.x < -threshold) {
+            nextSlide();
+        } else if (info.offset.x > threshold) {
+            prevSlide();
+        }
+    };
+
+    const variants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 300 : -300,
+            opacity: 0,
+            scale: 0.95
+        }),
+        center: {
+            zIndex: 1,
+            x: 0,
+            opacity: 1,
+            scale: 1
+        },
+        exit: (direction: number) => ({
+            zIndex: 0,
+            x: direction < 0 ? 300 : -300,
+            opacity: 0,
+            scale: 0.95
+        })
+    };
+
+    const ProductCard = ({ product, isMobile = false }: { product: Product, isMobile?: boolean }) => (
         <div
             onClick={() => onProductClick(product.id)}
-            className="bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full cursor-pointer relative"
+            className={`bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full cursor-pointer relative ${isMobile ? 'shadow-2xl shadow-black/50' : ''}`}
         >
             {/* Image Area */}
-            <div className="h-[250px] relative overflow-hidden border-b border-white/5 bg-black">
+            <div className={`${isMobile ? 'h-[320px]' : 'h-[250px]'} relative overflow-hidden border-b border-white/5 bg-black`}>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60 z-10" />
                 <img
                     src={product.image}
@@ -45,10 +78,10 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
             {/* Content Area */}
             <div className="p-8 flex flex-col flex-grow justify-between">
                 <div>
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    <h3 className={`${isMobile ? 'text-3xl' : 'text-2xl'} font-bold text-white mb-4 group-hover:text-blue-400 transition-colors`}>
                         {product.name}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                    <p className={`${isMobile ? 'text-base' : 'text-sm text-slate-400'} leading-relaxed mb-6 line-clamp-3 text-slate-300`}>
                         {product.description}
                     </p>
 
@@ -61,7 +94,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-[10px] text-slate-500 uppercase tracking-wider">{spec.label}</span>
-                                    <span className="text-sm font-bold text-white">{spec.value}</span>
+                                    <span className={`${isMobile ? 'text-base' : 'text-sm'} font-bold text-white`}>{spec.value}</span>
                                 </div>
                             </div>
                         ))}
@@ -69,7 +102,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
                 </div>
 
                 <button
-                    className="w-full py-4 bg-blue-900/10 border border-blue-500/30 hover:bg-blue-600 hover:border-blue-500 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-blue-900/20"
+                    className={`w-full ${isMobile ? 'py-5 text-sm' : 'py-4 text-xs'} bg-blue-900/10 border border-blue-500/30 hover:bg-blue-600 hover:border-blue-500 text-white rounded-xl font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-blue-900/20`}
                 >
                     Scopri Dettagli
                 </button>
@@ -98,22 +131,42 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
                     ))}
                 </div>
 
-                {/* MOBILE: Single Card Slider */}
-                <div className="md:hidden relative px-4">
-                    <div className="mb-8">
-                        <ProductCard product={products[currentIndex]} />
+                {/* MOBILE: Swipeable Card Slider */}
+                <div className="md:hidden relative px-4 min-h-[600px]">
+                    <div className="relative overflow-visible">
+                        <AnimatePresence initial={false} custom={direction} mode='wait'>
+                            <motion.div
+                                key={currentIndex}
+                                custom={direction}
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                transition={{
+                                    x: { type: "spring", stiffness: 300, damping: 30 },
+                                    opacity: { duration: 0.2 }
+                                }}
+                                drag="x"
+                                dragConstraints={{ left: 0, right: 0 }}
+                                dragElastic={1}
+                                onDragEnd={handleDragEnd}
+                                className="w-full touch-pan-y"
+                            >
+                                <ProductCard product={products[currentIndex]} isMobile={true} />
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
 
                     {/* Mobile Controls */}
-                    <div className="flex justify-between items-center px-4">
+                    <div className="flex justify-between items-center px-4 mt-8">
                         <button
                             onClick={prevSlide}
-                            className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-colors active:scale-95"
+                            className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-colors active:scale-95 z-20"
                         >
                             <ChevronLeft className="w-6 h-6" />
                         </button>
 
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 z-20">
                             {products.map((_, idx) => (
                                 <div
                                     key={idx}
@@ -124,7 +177,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
 
                         <button
                             onClick={nextSlide}
-                            className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-colors active:scale-95"
+                            className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-colors active:scale-95 z-20"
                         >
                             <ChevronRight className="w-6 h-6" />
                         </button>
