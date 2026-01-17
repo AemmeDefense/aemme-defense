@@ -35,7 +35,7 @@ export function PerformanceSection({ performanceImg }: PerformanceSectionProps) 
                             />
                             <StatCard
                                 icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>}
-                                value="40"
+                                value="23"
                                 suffix=" km"
                                 label="Range Operativo"
                                 color="text-white"
