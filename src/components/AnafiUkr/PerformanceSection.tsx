@@ -28,7 +28,7 @@ export function PerformanceSection({ performanceImg }: PerformanceSectionProps) 
                         <div className="grid grid-cols-2 gap-6">
                             <StatCard
                                 icon={<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
-                                value="70"
+                                value="38"
                                 suffix=" min"
                                 label="Autonomia di Volo"
                                 color="text-blue-400"
