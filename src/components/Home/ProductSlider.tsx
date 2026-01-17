@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import type { PanInfo } from 'framer-motion';
 
 interface Product {
     id: number;
@@ -111,7 +112,7 @@ export function ProductSlider({ products, onProductClick }: ProductSliderProps) 
     );
 
     return (
-        <div className="py-24 bg-[#050505] relative border-t border-white/5">
+        <div className="py-12 md:py-24 bg-[#050505] relative border-t border-white/5">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 {/* Header */}

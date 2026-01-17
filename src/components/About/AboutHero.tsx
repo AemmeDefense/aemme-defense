@@ -13,11 +13,11 @@ export function AboutHero() {
     const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
     return (
-        <div ref={containerRef} className="relative min-h-screen bg-black pb-32">
+        <div ref={containerRef} className="relative min-h-screen bg-black pb-12 md:pb-32 pt-24 md:pt-0">
             {/* 1. Video Frame Section */}
             {/* Full Width Video - No Padding ("Senza riduzioni") */}
             {/* Removed h-[80vh] which was cropping - now uses aspect-video for full frame */}
-            <div className="relative w-full aspect-video">
+            <div className="relative w-full aspect-video md:aspect-video h-[50vh] md:h-auto">
 
                 {/* Full Width Container - No Border/Rounding */}
                 <div className="relative w-full h-full overflow-hidden shadow-2xl">

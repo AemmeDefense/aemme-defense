@@ -4,9 +4,9 @@ interface PartnersSectionProps {
 
 export function PartnersSection({ partners }: PartnersSectionProps) {
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="relative overflow-hidden group/section py-10">
-                <h3 className="text-center text-3xl md:text-4xl font-bold mb-20 relative z-10 flex items-center justify-center gap-6 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+            <div className="relative overflow-hidden group/section py-6 md:py-10">
+                <h3 className="text-center text-3xl md:text-4xl font-bold mb-10 md:mb-20 relative z-10 flex items-center justify-center gap-6 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
                     <span className="h-[2px] w-12 bg-blue-500/50 rounded-full"></span>
                     Trusted by Elite Forces
                     <span className="h-[2px] w-12 bg-blue-500/50 rounded-full"></span>
